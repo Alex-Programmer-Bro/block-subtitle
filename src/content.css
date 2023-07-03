@@ -1,0 +1,14 @@
+.hello {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 50px;
+  width: 100px;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0 0 10px #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+}
