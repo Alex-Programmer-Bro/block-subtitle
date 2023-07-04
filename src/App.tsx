@@ -56,7 +56,7 @@ const InnerComponent = () => {
             outer: "parent",
           }),
           interact.modifiers.restrictSize({
-            min: { width: 100, height: 50 },
+            min: { width: 100, height: 10 },
           }),
         ],
         inertia: true,
