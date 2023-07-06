@@ -4,7 +4,8 @@
   "description": "字幕遮挡工具",
   "version": "0.0.4",
   "icons": {
-    "16": "icon.png"
+    "16": "icon.png",
+    "48": "icon48.png"
   },
   "action": {},
   "content_scripts": [
