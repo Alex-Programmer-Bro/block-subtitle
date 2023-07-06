@@ -1,4 +1,4 @@
-# block subtitle
+# <img src="public/icon.png" width="50" style="vertical-align: middle;" /> block subtitle
 
 英语学习辅助工具，在观看双语字幕时，可以用黑块儿遮挡字幕来观看。
 
