@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "block-subtitle",
   "description": "字幕遮挡工具",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "icons": {
     "16": "icon.png",
     "48": "icon48.png"
