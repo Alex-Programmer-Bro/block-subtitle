@@ -1,6 +1,5 @@
-import React from "react";
 import root from "react-shadow";
-import styles from "./content.css";
+import styles from "./content.css?inline";
 import { useDraggable } from "./hook/useDraggable";
 import { usePressing } from "./hook/usePressing";
 

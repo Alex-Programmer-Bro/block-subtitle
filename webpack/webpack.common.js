@@ -1,6 +1,9 @@
 const path = require("path");
 const srcDir = path.join(__dirname, "..", "src");
 const CopyPlugin = require("copy-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
+const absolute = (filepath) => path.resolve(__dirname, filepath);
 
 module.exports = {
   entry: {
@@ -24,7 +27,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
-        exclude: /node_modules/,
+        exclude: [absolute('../node_modules'), absolute('../src/*.stories.tsx')],
       },
       {
         test: /\.css$/,
@@ -40,5 +43,10 @@ module.exports = {
       patterns: [{ from: ".", to: "../", context: "public" }],
       options: {},
     }),
+    new FriendlyErrorsWebpackPlugin(),
   ],
+  performance: {
+    hints: false
+  },
+  cache: true
 };
