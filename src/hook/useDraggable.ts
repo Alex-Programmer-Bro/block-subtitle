@@ -1,23 +1,27 @@
 import interact from "interactjs";
 import { useEffect, useRef } from "react";
+import { getCache, setCache } from "../tool/cacheBlockInfo";
 
 export const useDraggable = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const setBlock = ({ width, height, x, y }: CacheBlockInfo) => {
+    const target = containerRef.current!;
+    target.style.width = width + "px";
+    target.style.height = height + "px";
+    target.style.transform = `translate(${x}px, ${y}px)`;
+    target.setAttribute("data-x", x.toString());
+    target.setAttribute("data-y", y.toString());
+    target.textContent = Math.round(width) + "\u00D7" + Math.round(height);
+  };
 
   useEffect(() => {
     const target = containerRef.current!;
     const shadowRoot = target.getRootNode() as ShadowRoot;
 
-    const cacheKey = location.origin;
-    const cachedData = localStorage.getItem(cacheKey);
+    const cachedData = getCache();
     if (cachedData) {
-      const { width, height, x, y } = JSON.parse(cachedData);
-      target.style.width = width + "px";
-      target.style.height = height + "px";
-      target.style.transform = `translate(${x}px, ${y}px)`;
-      target.setAttribute("data-x", x);
-      target.setAttribute("data-y", y);
-      target.textContent = Math.round(width) + "\u00D7" + Math.round(height);
+      setBlock(cachedData);
     }
 
     interact(target, { context: shadowRoot })
@@ -43,8 +47,7 @@ export const useDraggable = () => {
             target.textContent = Math.round(event.rect.width) + "\u00D7" + Math.round(event.rect.height);
 
             const { width, height } = event.rect;
-            const data = JSON.stringify({ width, height, x, y });
-            localStorage.setItem(cacheKey, data);
+            setCache({ width, height, x, y });
           },
         },
         modifiers: [
@@ -63,13 +66,9 @@ export const useDraggable = () => {
             const target = event.target;
             const x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx;
             const y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
-            target.style.transform = `translate(${x}px, ${y}px)`;
-            target.setAttribute("data-x", x);
-            target.setAttribute("data-y", y);
-
             const { width, height } = event.rect;
-            const data = JSON.stringify({ width, height, x, y });
-            localStorage.setItem(cacheKey, data);
+            setBlock({ width, height, x, y });
+            setCache({ width, height, x, y });
           },
         },
         inertia: true,
@@ -83,6 +82,7 @@ export const useDraggable = () => {
   }, []);
 
   return {
-    containerRef
+    containerRef,
+    setBlock
   }
 }
