@@ -8,3 +8,10 @@ type CacheBlockInfo = {
   x: number
   y: number
 }
+
+type RecordItem = {
+  id: string;
+  title: string;
+  block: CacheBlockInfo;
+  shortcuts?: string;
+}

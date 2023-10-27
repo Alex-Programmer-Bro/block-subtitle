@@ -1,10 +1,19 @@
 const cacheKey = location.origin;
 
-export const getCache = () => {
+const defaultValue: CacheBlockInfo = {
+  width: 400,
+  height: 100,
+  x: 0,
+  y: 0
+}
+
+export const getCache = (): CacheBlockInfo => {
   try {
-    return JSON.parse(localStorage.getItem(cacheKey)!);
+    const cache = localStorage.getItem(cacheKey);
+    if (!cache) return defaultValue;
+    return JSON.parse(cache);
   } catch (error) {
-    return null
+    return defaultValue
   }
 }
 
