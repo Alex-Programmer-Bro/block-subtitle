@@ -13,7 +13,7 @@ const Main = () => {
   return (
     <>
       <div className="container">
-        <div className={`hello ${pressing ? "pressing" : ""}`} ref={containerRef} />
+        <div className={`block-subtitle ${pressing ? "pressing" : ""}`} ref={containerRef} />
       </div>
       <Mode setBlock={setBlock} />
     </>
@@ -30,3 +30,12 @@ export const App = () => {
     </root.div>
   );
 };
+
+export const TestApp = () => {
+  return <div>
+    <style type="text/css">{antdCss}</style>
+    <style type="text/css">{styles}</style>
+    <style type="text/css">{keyboardCss}</style>
+    <Main />
+  </div>
+}

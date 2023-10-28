@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-.hello {
+.block-subtitle {
   width: 400px;
   height: 100px;
   line-height: 60px;
@@ -17,7 +17,7 @@
   font-size: 0;
 }
 
-.hello.pressing {
+.block-subtitle.pressing {
   opacity: 0;
 }
 

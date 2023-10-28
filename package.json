@@ -41,6 +41,7 @@
     "@types/uuid": "^9.0.6",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.7.3",
+    "cypress": "^13.3.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "jsdom": "^21.1.1",
