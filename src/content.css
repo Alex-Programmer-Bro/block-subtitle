@@ -60,6 +60,10 @@
   gap: 10px;
 }
 
+.record .action button {
+  width: 40px;
+}
+
 .ant-drawer {
   position: fixed !important;
 }
@@ -68,7 +72,11 @@
   width: 100%;
 }
 
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
+}
+
+.ant-popover-inner-content {
+  width: 100%;
 }

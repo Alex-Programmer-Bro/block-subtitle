@@ -5,7 +5,6 @@ export const usePressing = () => {
 
   useEffect(() => {
     const onPress = (e: KeyboardEvent) => {
-      e.preventDefault();
       if (e.key === "s") {
         setPressing(true);
       }

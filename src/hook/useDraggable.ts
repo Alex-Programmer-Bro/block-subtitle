@@ -12,7 +12,6 @@ export const useDraggable = () => {
     target.style.transform = `translate(${x}px, ${y}px)`;
     target.setAttribute("data-x", x.toString());
     target.setAttribute("data-y", y.toString());
-    target.textContent = Math.round(width) + "\u00D7" + Math.round(height);
   };
 
   useEffect(() => {
@@ -44,7 +43,6 @@ export const useDraggable = () => {
 
             target.setAttribute("data-x", x);
             target.setAttribute("data-y", y);
-            target.textContent = Math.round(event.rect.width) + "\u00D7" + Math.round(event.rect.height);
 
             const { width, height } = event.rect;
             setCache({ width, height, x, y });
@@ -83,6 +81,6 @@ export const useDraggable = () => {
 
   return {
     containerRef,
-    setBlock
-  }
-}
+    setBlock,
+  };
+};

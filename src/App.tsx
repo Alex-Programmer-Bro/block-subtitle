@@ -1,7 +1,7 @@
-import antdCss from 'antd/dist/antd.css?inline';
+import antdCss from "antd/dist/antd.css?inline";
 import root from "react-shadow";
-import keyboardCss from 'react-simple-keyboard/build/css/index.css?inline';
-import { Mode } from './component/mode';
+import keyboardCss from "react-simple-keyboard/build/css/index.css?inline";
+import { Mode } from "./component/mode";
 import styles from "./content.css?inline";
 import { useDraggable } from "./hook/useDraggable";
 import { usePressing } from "./hook/usePressing";
@@ -25,10 +25,8 @@ export const App = () => {
     <root.div mode="open">
       <style type="text/css">{antdCss}</style>
       <style type="text/css">{styles}</style>
-      <style type='text/css'>{keyboardCss}</style>
+      <style type="text/css">{keyboardCss}</style>
       <Main />
     </root.div>
   );
 };
-
-
