@@ -32,10 +32,12 @@ export const App = () => {
 };
 
 export const TestApp = () => {
-  return <div>
-    <style type="text/css">{antdCss}</style>
-    <style type="text/css">{styles}</style>
-    <style type="text/css">{keyboardCss}</style>
-    <Main />
-  </div>
-}
+  return (
+    <div>
+      <style type="text/css">{antdCss}</style>
+      <style type="text/css">{styles}</style>
+      <style type="text/css">{keyboardCss}</style>
+      <Main />
+    </div>
+  );
+};

@@ -19,7 +19,7 @@ export const ModeItem = ({ recordAtom, remove }: { recordAtom: PrimitiveAtom<Rec
     />
   );
 
-  console.log('mode-item', record);
+  console.log("mode-item", record);
 
   return (
     <div className="record" ref={containerRef}>
