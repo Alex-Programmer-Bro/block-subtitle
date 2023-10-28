@@ -5,5 +5,10 @@ describe('e2e test', () => {
 
   it('startup', () => {
     cy.get('.block-subtitle').should('be.visible');
+    cy.get('body').type('{shift}', { release: false });
+    cy.get('body').type('{r}', { release: false });
+
+    cy.get('body').type('{shift}', { release: true });
+    cy.get('body').type('{r}', { release: true });
   })
 })
