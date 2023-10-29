@@ -31,7 +31,7 @@ export const App = () => {
   );
 };
 
-export const TestApp = () => {
+export const StoryBookApp = () => {
   return (
     <div>
       <style type="text/css">{antdCss}</style>

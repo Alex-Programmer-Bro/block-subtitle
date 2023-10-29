@@ -1,27 +1,43 @@
 import interact from "interactjs";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
+import { activeModeAtom, activeRecrod } from "../store/record";
 import { getCache, setCache } from "../tool/cacheBlockInfo";
 
 export const useDraggable = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const activeMode = useAtomValue(activeModeAtom);
+  const setMode = useSetAtom(activeRecrod);
 
-  const setBlock = ({ width, height, x, y }: CacheBlockInfo) => {
+  const setBlock = ({ width, height, x, y }: CacheBlockInfo, mode: boolean = false) => {
     const target = containerRef.current!;
-    target.style.width = width + "px";
-    target.style.height = height + "px";
-    target.style.transform = `translate(${x}px, ${y}px)`;
+    target.style.cssText = `
+      width: ${width}px;
+      height: ${height}px;
+      transform: translate(${x}px, ${y}px)
+    `;
     target.setAttribute("data-x", x.toString());
     target.setAttribute("data-y", y.toString());
+
+    if (!mode) {
+      setMode('');
+    }
   };
+
+  useEffect(() => {
+    if (activeMode) {
+      setBlock(activeMode.block, true);
+    } else {
+      const cachedData = getCache();
+      if (cachedData) {
+        setBlock(cachedData);
+      }
+    }
+  }, [activeMode]);
 
   useEffect(() => {
     const target = containerRef.current!;
     const shadowRoot = target.getRootNode() as ShadowRoot;
-
-    const cachedData = getCache();
-    if (cachedData) {
-      setBlock(cachedData);
-    }
 
     interact(target, { context: shadowRoot })
       .resizable({

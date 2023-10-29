@@ -5,7 +5,7 @@ import { useState } from "react";
 import useKeyboardShortcut from "use-keyboard-shortcut";
 import { v1 } from "uuid";
 import { ModeItem } from "../component/modeItem";
-import { activeRecrod, recordListAtom } from "../jotai/record";
+import { activeRecrod, recordListAtom } from "../store/record";
 import { getCache } from "../tool/cacheBlockInfo";
 
 export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void }) => {
@@ -42,6 +42,7 @@ export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void })
 
   const onReset = () => {
     setBlock(getCache());
+    setActive('');
   };
 
   return (
