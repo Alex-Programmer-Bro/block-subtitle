@@ -5,12 +5,12 @@ import { useState } from "react";
 import useKeyboardShortcut from "use-keyboard-shortcut";
 import { v1 } from "uuid";
 import { ModeItem } from "../component/modeItem";
-import { activeRecrod, recordListAtom } from "../store/record";
+import { activeModeId, modeListAtom } from "../store/mode";
 import { getCache } from "../tool/cacheBlockInfo";
 
 export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void }) => {
-  const [recordList, dispatch] = useAtom(recordListAtom);
-  const [active, setActive] = useAtom(activeRecrod);
+  const [modeList, dispatch] = useAtom(modeListAtom);
+  const [active, setActive] = useAtom(activeModeId);
   const [open, setOpen] = useState(false);
 
   useKeyboardShortcut(["Shift", "R"], () => setOpen(true), {
@@ -27,8 +27,8 @@ export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void })
     setOpen(false);
   };
 
-  const onAddRecord = () => {
-    const newRecord = {
+  const onAddMode = () => {
+    const newMode = {
       id: v1(),
       title: "",
       block: getCache(),
@@ -36,7 +36,7 @@ export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void })
 
     dispatch({
       type: "insert",
-      value: newRecord,
+      value: newMode,
     });
   };
 
@@ -48,6 +48,7 @@ export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void })
   return (
     <div className="mode">
       <Drawer
+        forceRender
         title="Set Mode"
         placement="left"
         onClose={onClose}
@@ -58,18 +59,18 @@ export const Mode = ({ setBlock }: { setBlock: (data: CacheBlockInfo) => void })
             <Button type="default" onClick={onReset}>
               Reset
             </Button>
-            <Button type="primary" onClick={onAddRecord}>
-              + Add Record
+            <Button type="primary" onClick={onAddMode}>
+              + Add Mode
             </Button>
           </div>
         }
       >
         <Radio.Group onChange={onChange} value={active} size="large">
-          {recordList.map((item, i) => {
+          {modeList.map((item, i) => {
             return (
               <ModeItem
                 key={i}
-                recordAtom={item}
+                modeAtom={item}
                 remove={() => {
                   dispatch({ type: "remove", atom: item });
                 }}

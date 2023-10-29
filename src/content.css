@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.record {
+.mode-item {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -50,17 +50,17 @@
   padding: 4px 6px;
 }
 
-.record svg {
+.mode svg {
   width: 14px;
 }
 
-.record .action {
+.mode .action {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 10px;
 }
 
-.record .action button {
+.mode .action button {
   width: 40px;
 }
 

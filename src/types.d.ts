@@ -9,7 +9,7 @@ type CacheBlockInfo = {
   y: number;
 };
 
-type RecordItem = {
+type ModeItem = {
   id: string;
   title: string;
   block: CacheBlockInfo;

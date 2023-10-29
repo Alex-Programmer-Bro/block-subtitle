@@ -1,11 +1,22 @@
 import { Button, Input, Popover, Radio } from "antd";
-import { PrimitiveAtom, useAtom } from "jotai";
+import { PrimitiveAtom, useAtom, useSetAtom } from "jotai";
 import { useRef } from "react";
 import Keyboard from "react-simple-keyboard";
+import useKeyboardShortcut from "use-keyboard-shortcut";
+import { activeModeId } from "../store/mode";
 
-export const ModeItem = ({ recordAtom, remove }: { recordAtom: PrimitiveAtom<RecordItem>; remove: () => void }) => {
+export const ModeItem = ({ modeAtom, remove }: { modeAtom: PrimitiveAtom<ModeItem>; remove: () => void }) => {
   const containerRef = useRef(null);
-  const [record, setRecord] = useAtom(recordAtom);
+  const [mode, setMode] = useAtom(modeAtom);
+  const setActiveMode = useSetAtom(activeModeId);
+
+  useKeyboardShortcut([mode.shortcuts || ''], () => {
+    setActiveMode(mode.id);
+  }, {
+    overrideSystem: true,
+    ignoreInputFields: false,
+    repeatOnHold: false,
+  });
 
   const onRemove = () => {
     remove();
@@ -14,20 +25,20 @@ export const ModeItem = ({ recordAtom, remove }: { recordAtom: PrimitiveAtom<Rec
   const content = (
     <Keyboard
       onKeyPress={(v) => {
-        setRecord((pre) => ({ ...pre, shortcuts: v }));
+        setMode((pre) => ({ ...pre, shortcuts: v }));
       }}
     />
   );
 
   return (
-    <div className="record" ref={containerRef}>
-      <Radio value={record.id}>
+    <div className="mode-item" ref={containerRef}>
+      <Radio value={mode.id}>
         <Input
           type="text"
           placeholder="Description"
-          defaultValue={record.title}
+          defaultValue={mode.title}
           onChange={(e) => {
-            setRecord((old) => {
+            setMode((old) => {
               return {
                 ...old,
                 title: e.target.value,
@@ -49,8 +60,8 @@ export const ModeItem = ({ recordAtom, remove }: { recordAtom: PrimitiveAtom<Rec
             placement="bottom"
             trigger={["click"]}
           >
-            {record.shortcuts ? (
-              <Button>{record.shortcuts}</Button>
+            {mode.shortcuts ? (
+              <Button>{mode.shortcuts}</Button>
             ) : (
               <Button
                 icon={

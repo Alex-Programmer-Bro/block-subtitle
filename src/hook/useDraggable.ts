@@ -1,13 +1,13 @@
 import interact from "interactjs";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
-import { activeModeAtom, activeRecrod } from "../store/record";
+import { activeModeAtom, activeModeId } from "../store/mode";
 import { getCache, setCache } from "../tool/cacheBlockInfo";
 
 export const useDraggable = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeMode = useAtomValue(activeModeAtom);
-  const setMode = useSetAtom(activeRecrod);
+  const setMode = useSetAtom(activeModeId);
 
   const setBlock = ({ width, height, x, y }: CacheBlockInfo, mode: boolean = false) => {
     const target = containerRef.current!;

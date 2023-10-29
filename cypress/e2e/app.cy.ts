@@ -19,6 +19,6 @@ describe('ui test', () => {
     cy.get('.ant-drawer-close').should('be.visible');
     cy.get('.ant-drawer-title').should('have.text', 'Set Mode');
     cy.get('.ant-btn-default > span').should('have.text', 'Reset');
-    cy.get('.ant-btn-primary > span').should('have.text', '+ Add Record');
+    cy.get('.ant-btn-primary > span').should('have.text', '+ Add Mode');
   })
 })
